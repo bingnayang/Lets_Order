@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let's Order Web App</title>
 </head>
 <body>
-
+	<h5>Menu</h5>
+	
 </body>
 </html>

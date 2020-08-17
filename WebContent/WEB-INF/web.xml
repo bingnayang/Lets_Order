@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MenuController</display-name>
+    <servlet-name>MenuController</servlet-name>
+    <servlet-class>in.order.controller.MenuController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MenuController</servlet-name>
+    <url-pattern>/MenuController</url-pattern>
+  </servlet-mapping>
 </web-app>
