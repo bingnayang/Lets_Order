@@ -25,19 +25,39 @@ public class MenuController extends HttpServlet {
 	} 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		if(action == null) {
+			action = "LIST";
+		}
+		switch(action) {
+			case "LIST":
+				getMenuItem(request,response);
+				break;
+			case "SELECT":
+				addItem(request,response);
+				break;
+		}
 
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	public void addItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("Menu Item Id: "+id);
+		
+		response.sendRedirect("MenuController");
+	}
+	
+	public void getMenuItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MenuInfo> allMenuList = menuDAO.getMenu();		
 
 		request.setAttribute("allMenuList",allMenuList);
 		// Get the request dispatcher
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order.jsp");
 		// Forward the request and response objects
-		dispatcher.forward(request,response);	
-		
+		dispatcher.forward(request,response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 }

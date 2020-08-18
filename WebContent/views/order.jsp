@@ -29,15 +29,17 @@
 				<div class="bg-dark text-center text-light"><h4>Menu</h4></div>
 				<div class="list-group">
 					<c:forEach items="${allMenuList}" var="item">
-						<div
-							class="list-group-item list-group-item-action flex-column align-items-start">
+<%-- 						<button
+							type="button" class="list-group-item list-group-item-action flex-column align-items-start" onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class="mb-1">${item.itemName}</h5>
-								<input type="number" value="0" min="0" max="5" step="1" />
+<!-- 								<input type="number" value="0" min="0" max="5" step="1" /> -->
 							</div>
 							<p class="mb-1">${item.description}</p>
 							<p class="mb-1">$ ${item.itemPrice}</p>
-						</div>
+						</button> --%>
+						<button type="button" class="btn btn-outline-info btn-sm" 
+									onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">${item.itemName}</button>
 					</c:forEach>
 				</div>
 			</div>
