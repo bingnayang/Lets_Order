@@ -27,10 +27,6 @@ public class MenuController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<MenuInfo> allMenuList = menuDAO.getMenu();		
-		
-		for(MenuInfo item: allMenuList) {
-			System.out.println(item.getItemName());
-		}
 
 		request.setAttribute("allMenuList",allMenuList);
 		// Get the request dispatcher
