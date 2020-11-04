@@ -5,4 +5,5 @@ import in.order.entity.MenuInfo;
 
 public interface MenuDAO {
 	List<MenuInfo> getMenu();
+	MenuInfo getItem(int itemId);
 }

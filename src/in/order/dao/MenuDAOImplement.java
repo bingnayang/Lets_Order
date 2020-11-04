@@ -47,5 +47,33 @@ public class MenuDAOImplement implements MenuDAO {
 		}
 		return list;
 	}
+
+	@Override
+	public MenuInfo getItem(int itemId) {
+		// Create reference variables
+		MenuInfo menuInfo = null;
+		String sql = "SELECT * FROM menuInfo WHERE item_Id = "+itemId;
+		try {
+			// Get the database connection
+			connection = DBConnectionUtil.openConnection();
+			// Create a statement
+			statement = connection.createStatement();
+			// Execute the query
+			resultSet = statement.executeQuery(sql);
+			// Process the resultSet
+			while(resultSet.next()) {
+				menuInfo = new MenuInfo();
+				menuInfo.setItem_Id(resultSet.getInt("item_Id"));
+				menuInfo.setItemName(resultSet.getString("itemName"));
+				menuInfo.setItemPrice(resultSet.getDouble("itemPrice"));
+				menuInfo.setDescription(resultSet.getString("description"));
+				menuInfo.setCategoryType(resultSet.getString("categoryType"));
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return menuInfo;
+	}
 	
 }

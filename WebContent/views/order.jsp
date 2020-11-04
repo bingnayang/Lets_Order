@@ -17,39 +17,54 @@
 </head>
 <body>
 	<!-- Image and text -->
-	<nav class="navbar navbar-dark bg-dark mb-2">
-		<a class="navbar-brand" href="#">
-			Let's Order
-		</a>
+	<nav class="navbar navbar-dark bg-primary mb-2">
+		<a class="navbar-brand" href="#"> Let's Order </a>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid mb-2">
 		<div class="row">
 			<div class="col">
-				<div class="bg-dark text-center text-light"><h4>Menu</h4></div>
-				<div class="list-group">
-					<c:forEach items="${allMenuList}" var="item">
-<%-- 						<button
-							type="button" class="list-group-item list-group-item-action flex-column align-items-start" onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">
-							<div class="d-flex w-100 justify-content-between">
-								<h5 class="mb-1">${item.itemName}</h5>
-<!-- 								<input type="number" value="0" min="0" max="5" step="1" /> -->
-							</div>
-							<p class="mb-1">${item.description}</p>
-							<p class="mb-1">$ ${item.itemPrice}</p>
-						</button> --%>
-						<button type="button" class="btn btn-outline-info btn-sm" 
-									onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">${item.itemName}</button>
-					</c:forEach>
+				<div class="card">
+					<div class="card-body">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Sandwich</th>
+									<th scope="col">Price</th>
+									<th scope="col">Add</th>
+								</tr>
+							</thead>
+							<c:forEach items="${allMenuList}" var="item">
+								<tr>
+									<td>${item.itemName}</td>
+									<td>$ ${item.itemPrice}</td>
+									<td><button type="button" class="btn btn-primary btn-sm"
+											onclick="window.location.href='${pageContext.request.contextPath}/SelectController?action=SELECT&id=${item.itemName}'">+</button></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="bg-dark text-center text-light">
+				<%-- 				<div class="bg-dark text-center text-light">
 					<h4>Order</h4>
 				</div>
 				<form action="">
 					<label>Order Items List</label>
-				</form>
+						<ul class="list-group">
+						<c:forEach items="${allItemList}" var="eachItem">
+  							<li class="list-group-item">${allItemList.itemName}</li>
+						</c:forEach>
+						</ul>
+				</form> --%>
+				<div class="card">
+					<div class="card-body">
+					    <h5 class="card-title">Order Basket</h5>
+					    
+    					<h6 class="card-subtitle mb-2 text-muted">Send</h6>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
