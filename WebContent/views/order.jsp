@@ -51,9 +51,17 @@
 					<div class="card-header">Order Bucket</div>
 					<div class="card-body">
 						<c:forEach items="${bucketList}" var="item">
-						 	${item.itemName}
+							<ul class="list-group list-group-flush">
+								<li
+									class="list-group-item d-flex justify-content-between align-items-center">
+									${item.itemName}
+									<button type="button" class="btn btn-danger btn-sm"
+										onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE&id=${item.item_Id}'">X</button>
+								</li>
+							</ul>
 						</c:forEach>
 					</div>
+					<div class="card-footer text-muted"><button type="button" onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Delete All</button></div>
 				</div>
 			</div>
 		</div>

@@ -42,7 +42,16 @@ public class MenuController extends HttpServlet {
 				getItem(request,response,id);	
 				getMenuItem(request,response);
 				break;
+			case "DELETE_ALL":
+				deleteAll(request,response);
+				getMenuItem(request,response);
+				break;
 		}
+	}
+
+	private void deleteAll(HttpServletRequest request, HttpServletResponse response) {
+		bucketList.clear();
+		
 	}
 
 	private void getItem(HttpServletRequest request, HttpServletResponse response, int id) throws ServletException, IOException{
