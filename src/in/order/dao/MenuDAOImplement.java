@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class MenuDAOImplement implements MenuDAO {
 			statement = connection.createStatement();
 			// Execute the query
 			resultSet = statement.executeQuery(sql);
+			
+						
 			// Process the resultSet
 			while(resultSet.next()) {
 				menuInfo = new MenuInfo();

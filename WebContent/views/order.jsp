@@ -39,7 +39,7 @@
 									<td>${item.itemName}</td>
 									<td>$ ${item.itemPrice}</td>
 									<td><button type="button" class="btn btn-primary btn-sm"
-											onclick="window.location.href='${pageContext.request.contextPath}/SelectController?action=SELECT&id=${item.itemName}'">+</button></td>
+											onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">+</button></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -47,22 +47,12 @@
 				</div>
 			</div>
 			<div class="col">
-				<%-- 				<div class="bg-dark text-center text-light">
-					<h4>Order</h4>
-				</div>
-				<form action="">
-					<label>Order Items List</label>
-						<ul class="list-group">
-						<c:forEach items="${allItemList}" var="eachItem">
-  							<li class="list-group-item">${allItemList.itemName}</li>
-						</c:forEach>
-						</ul>
-				</form> --%>
 				<div class="card">
+					<div class="card-header">Order Bucket</div>
 					<div class="card-body">
-					    <h5 class="card-title">Order Basket</h5>
-					    
-    					<h6 class="card-subtitle mb-2 text-muted">Send</h6>
+						<c:forEach items="${bucketList}" var="item">
+						 	${item.itemName}
+						</c:forEach>
 					</div>
 				</div>
 			</div>

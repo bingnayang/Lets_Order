@@ -6,6 +6,15 @@ public class MenuInfo {
 	private double itemPrice;
 	private String description;
 	private String categoryType;
+	
+	
+//	public MenuInfo(int item_Id, String itemName, double itemPrice, String description, String categoryType) {
+//		this.item_Id = item_Id;
+//		this.itemName = itemName;
+//		this.itemPrice = itemPrice;
+//		this.description = description;
+//		this.categoryType = categoryType;
+//	}
 	public int getItem_Id() {
 		return item_Id;
 	}
