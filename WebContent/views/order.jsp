@@ -29,7 +29,7 @@
 						<table class="table">
 							<thead class="thead-light">
 								<tr>
-									<th scope="col">Sandwich</th>
+									<th scope="col">Menu Item</th>
 									<th scope="col">Price</th>
 									<th scope="col">Add</th>
 								</tr>
@@ -50,18 +50,29 @@
 				<div class="card">
 					<div class="card-header">Order Bucket</div>
 					<div class="card-body">
-						<c:forEach items="${bucketList}" var="item">
-							<ul class="list-group list-group-flush">
-								<li
-									class="list-group-item d-flex justify-content-between align-items-center">
-									${item.itemName}
-									<button type="button" class="btn btn-danger btn-sm"
-										onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE&id=${item.item_Id}'">X</button>
-								</li>
-							</ul>
-						</c:forEach>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Item</th>
+									<th scope="col">Price</th>
+									<th scope="col">DELETE</th>
+								</tr>
+							</thead>
+							<c:forEach items="${bucketList}" var="item">
+								<tr>
+									<td>${item.itemName}</td>
+									<td>$ ${item.itemPrice}</td>
+									<td><button type="button" class="btn btn-danger btn-sm"
+											onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE&id=${item.item_Id}'">X</button></td>
+								</tr>
+							</c:forEach>
+						</table>
 					</div>
-					<div class="card-footer text-muted"><button type="button" onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Delete All</button></div>
+					<div class="card-footer text-muted">
+						<button type="button" class="btn btn-outline-danger"
+							onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Delete
+							All</button>
+					</div>
 				</div>
 			</div>
 		</div>

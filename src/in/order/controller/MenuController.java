@@ -2,6 +2,7 @@ package in.order.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -37,36 +38,54 @@ public class MenuController extends HttpServlet {
 				getMenuItem(request,response);
 				break;
 			case "SELECT":
-				int id = Integer.parseInt(request.getParameter("id"));
-//				System.out.println("Menu Item Id: "+id);
-				getItem(request,response,id);	
+				getItem(request,response);	
 				getMenuItem(request,response);
 				break;
 			case "DELETE_ALL":
 				deleteAll(request,response);
 				getMenuItem(request,response);
 				break;
+			case "DELETE":
+				deleteAnItem(request,response);
+//				getItem(request,response);
+				getMenuItem(request,response);
+				break;
 		}
+	}
+
+	private void deleteAnItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("Delete Item ID: "+id);
+		
+        Iterator<MenuInfo> itr = bucketList.iterator();
+        while (itr.hasNext()) {
+            MenuInfo number = itr.next();
+            if (number.getItem_Id() == id) {
+                itr.remove();
+            }
+        }
+        request.setAttribute("bucketList",bucketList);
 	}
 
 	private void deleteAll(HttpServletRequest request, HttpServletResponse response) {
 		bucketList.clear();
-		
+
 	}
 
-	private void getItem(HttpServletRequest request, HttpServletResponse response, int id) throws ServletException, IOException{
+	private void getItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int id = Integer.parseInt(request.getParameter("id"));
 		MenuInfo menuItem = menuDAO.getItem(id);
-		System.out.println("-------------------------");
-		System.out.println("Menu Id: "+menuItem.getItem_Id());
-		System.out.println("Menu Name: "+menuItem.getItemName());
-		System.out.println("Menu Price: "+menuItem.getItemPrice());
-		System.out.println("-------------------------");
+//		System.out.println("-------------------------");
+//		System.out.println("Menu Id: "+menuItem.getItem_Id());
+//		System.out.println("Menu Name: "+menuItem.getItemName());
+//		System.out.println("Menu Price: "+menuItem.getItemPrice());
+//		System.out.println("-------------------------");
 		
 		bucketList.add(menuItem);
 		
-		System.out.println("Bucket List");
+		System.out.println("-------Bucket List--------");
 		for(MenuInfo temp: bucketList) {
-			System.out.println(temp.getItemName() +" "+temp.getItemPrice());
+			System.out.println("ID: "+temp.getItem_Id()+" Name: "+temp.getItemName() +" Price: "+temp.getItemPrice());
 		}
 
 		
