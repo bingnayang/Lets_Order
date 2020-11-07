@@ -15,7 +15,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Let's Order Web App</title>
 </head>
-<body>
+<body class="bg-light">
 	<!-- Image and text -->
 	<nav class="navbar navbar-dark bg-primary mb-2">
 		<a class="navbar-brand" href="#"> Let's Order </a>
@@ -69,9 +69,17 @@
 						</table>
 					</div>
 					<div class="card-footer text-muted">
-						<button type="button" class="btn btn-outline-danger"
-							onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Delete
-							All</button>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><h5># Item: ${itemCount}</h5></li>
+							<li class="list-group-item"><h5>Total: ${orderTotal}</h5></li>
+							<li class="list-group-item">
+								<button type="button"
+									class="btn btn-primary btn-block">Submit Order</button> </li>
+							<li class="list-group-item"><button type="button"
+									class="btn btn-danger btn-block"
+									onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Clear
+									All</button></li>
+						</ul>
 					</div>
 				</div>
 			</div>

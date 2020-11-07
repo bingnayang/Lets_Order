@@ -1,9 +1,11 @@
 package in.order.controller;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,8 +21,11 @@ import in.order.entity.MenuInfo;
 public class MenuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	List<MenuInfo> bucketList = new ArrayList<MenuInfo>();;
+	List<MenuInfo> bucketList = new ArrayList<MenuInfo>();
+    NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
+	double total = 0.0;
+	int itemCount = 0;
 	// Create a reference variable
 	MenuDAO menuDAO = null;
 	
@@ -59,9 +64,12 @@ public class MenuController extends HttpServlet {
 		
         Iterator<MenuInfo> itr = bucketList.iterator();
         while (itr.hasNext()) {
-            MenuInfo number = itr.next();
-            if (number.getItem_Id() == id) {
+            MenuInfo item = itr.next();
+            if (item.getItem_Id() == id) {
                 itr.remove();
+                itemCount--;
+        		total -= item.getItemPrice();
+
             }
         }
         request.setAttribute("bucketList",bucketList);
@@ -69,12 +77,15 @@ public class MenuController extends HttpServlet {
 
 	private void deleteAll(HttpServletRequest request, HttpServletResponse response) {
 		bucketList.clear();
-
+		itemCount = 0;
+		total = 0.0;
 	}
 
 	private void getItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		int id = Integer.parseInt(request.getParameter("id"));
 		MenuInfo menuItem = menuDAO.getItem(id);
+
+		
 //		System.out.println("-------------------------");
 //		System.out.println("Menu Id: "+menuItem.getItem_Id());
 //		System.out.println("Menu Name: "+menuItem.getItemName());
@@ -82,19 +93,21 @@ public class MenuController extends HttpServlet {
 //		System.out.println("-------------------------");
 		
 		bucketList.add(menuItem);
-		
-		System.out.println("-------Bucket List--------");
-		for(MenuInfo temp: bucketList) {
-			System.out.println("ID: "+temp.getItem_Id()+" Name: "+temp.getItemName() +" Price: "+temp.getItemPrice());
-		}
-
+		total += menuItem.getItemPrice();
+		itemCount++;
 		
 		request.setAttribute("bucketList",bucketList);
 	}
 
 	public void getMenuItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MenuInfo> allMenuList = menuDAO.getMenu();		
+        String currencyTotal = format.format(total);
+
+		System.out.println("total: "+total);
+		System.out.println("Item Count: "+itemCount);
 		
+		request.setAttribute("itemCount",itemCount);
+		request.setAttribute("orderTotal",currencyTotal);
 		request.setAttribute("allMenuList",allMenuList);
 		// Get the request dispatcher
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order.jsp");
