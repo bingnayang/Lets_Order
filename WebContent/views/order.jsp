@@ -17,8 +17,14 @@
 </head>
 <body class="bg-light">
 	<!-- Image and text -->
-	<nav class="navbar navbar-dark bg-primary mb-2">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="#"> Let's Order </a>
+	</nav>
+	<nav class="navbar navbar-light mb-2" style="background-color: #e3f2fd;">
+		<div class="form-inline">
+			<button class="btn btn-outline-primary mr-sm-2">Order Menu</button>
+			<button type="button" class="btn btn-outline-primary" onclick="window.location.href='${pageContext.request.contextPath}/OrderController?action=VIEW_ORDER_LIST">Active Order List</button>
+		</div>
 	</nav>
 
 	<div class="container-fluid mb-2">
@@ -73,8 +79,9 @@
 							<li class="list-group-item"><h5># Item: ${itemCount}</h5></li>
 							<li class="list-group-item"><h5>Total: ${orderTotal}</h5></li>
 							<li class="list-group-item">
-								<button type="button"
-									class="btn btn-primary btn-block">Submit Order</button> </li>
+								<button class="btn btn-primary btn-block">Submit
+									Order</button>
+							</li>
 							<li class="list-group-item"><button type="button"
 									class="btn btn-danger btn-block"
 									onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE_ALL'">Clear
