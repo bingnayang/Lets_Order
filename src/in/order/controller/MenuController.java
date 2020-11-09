@@ -15,7 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.order.dao.MenuDAO;
 import in.order.dao.MenuDAOImplement;
+import in.order.dao.OrderViewDAO;
+import in.order.dao.OrderViewImpl;
 import in.order.entity.MenuInfo;
+import in.order.entity.OrderDetail;
 
 
 public class MenuController extends HttpServlet {
@@ -28,9 +31,12 @@ public class MenuController extends HttpServlet {
 	int itemCount = 0;
 	// Create a reference variable
 	MenuDAO menuDAO = null;
+	OrderViewDAO orderViewDAO = null;
 	
 	public MenuController() {
 		menuDAO = new MenuDAOImplement();
+		orderViewDAO = new OrderViewImpl();
+
 	} 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +61,27 @@ public class MenuController extends HttpServlet {
 //				getItem(request,response);
 				getMenuItem(request,response);
 				break;
+			case "VIEW_ACTIVE":
+				getActiveOrderList(request,response);
+				break;
 		}
+	}
+
+	private void getActiveOrderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		List<OrderDetail> allActiveOrder = orderViewDAO.getActiveOrder();
+		
+		System.out.println("Active Order List:");
+		for(OrderDetail temp: allActiveOrder) {
+			System.out.println(temp);
+		}
+		request.setAttribute("allOrderList",allActiveOrder);
+		
+		
+		// Get the request dispatcher
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order-view.jsp");
+		// Forward the request and response objects
+		dispatcher.forward(request,response);
+		
 	}
 
 	private void deleteAnItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

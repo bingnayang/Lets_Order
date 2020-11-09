@@ -43,8 +43,11 @@ public class OrderDetail {
 	public void setOrderTotal(double orderTotal) {
 		this.orderTotal = orderTotal;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "OrderDetail [ticket_Id=" + ticket_Id + ", order_Id=" + order_Id + ", itemName=" + itemName
+				+ ", itemPrice=" + itemPrice + ", orderQuantity=" + orderQuantity + ", orderTotal=" + orderTotal + "]";
+	}
+
 	
 }

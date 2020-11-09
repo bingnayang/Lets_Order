@@ -23,7 +23,9 @@
 	<nav class="navbar navbar-light mb-2" style="background-color: #e3f2fd;">
 		<div class="form-inline">
 			<button type="button" class="btn btn-outline-primary mr-sm-2">Order Menu</button>
-			<button type="submit" class="btn btn-outline-primary" onclick="window.location.href='views/order-view.jsp'">Active Order List</button>
+			<a type="button" class="btn btn-outline-primary"
+					href="${pageContext.request.contextPath}/MenuController?action=VIEW_ACTIVE">All
+					Active Orders</a> 
 		</div>
 	</nav>
 
