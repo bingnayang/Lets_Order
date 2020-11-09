@@ -18,12 +18,16 @@ public class OrderController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		switch(action) {
+		case "VIEW":
+			
+			break;
 		
+		}
 		
-		// Get the request dispatcher
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order-view.jsp");
-		// Forward the request and response objects
-		dispatcher.forward(request,response);
 	}
+
+
 
 }
