@@ -46,6 +46,7 @@ public class MenuController extends HttpServlet {
 		switch(action) {
 			case "LIST":
 				getMenuItem(request,response);
+				deleteAll(request,response);
 				break;
 			case "SELECT":
 				getItem(request,response);	

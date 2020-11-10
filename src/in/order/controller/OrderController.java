@@ -1,6 +1,7 @@
 package in.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.order.dao.OrderViewDAO;
 import in.order.dao.OrderViewImpl;
+import in.order.entity.MenuInfo;
 import in.order.entity.OrderDetail;
 
 public class OrderController extends HttpServlet{
@@ -28,10 +30,23 @@ public class OrderController extends HttpServlet{
 		String itemCount = request.getParameter("item_Quantity");
 		String orderTotal = request.getParameter("order_Total");
 		
+		List<String> itemName = new ArrayList<String>();
+		
+		String[] value = request.getParameterValues("item_Name");
+        for(int i=0;i<value.length;i++) {
+        	itemName.add(request.getParameterValues("item_Name")[i]);
+        }
+
+		
 		System.out.println("Get: itemCount = "+itemCount);
 		System.out.println("Get: orderTotal = "+orderTotal);
+		System.out.println("Get: itemName = ");
+		for(String temp: itemName) {
+			System.out.println(temp);
+		}
 		
-		response.sendRedirect("MenuController");
+		
+		response.sendRedirect("MenuController?action=DELETE_ALL");
 	}
 
 

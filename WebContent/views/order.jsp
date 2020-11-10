@@ -72,8 +72,8 @@
 								</thead>
 								<c:forEach items="${bucketList}" var="item">
 									<tr>
-										<td>${item.itemName}</td>
-										<td>$ ${item.itemPrice}</td>
+										<td><input name="item_Name" value="${item.itemName}"></td>
+										<td><input name="item_Price" value="${item.itemPrice}"></td>
 										<td><button type="button" class="btn btn-danger btn-sm"
 												onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE&id=${item.item_Id}'">X</button></td>
 									</tr>
@@ -82,8 +82,8 @@
 						</div>
 						<div class="card-footer text-muted">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item"># Item: <input name="item_Quantity" value="${itemCount}"></li>
-								<li class="list-group-item">Total: $ <input name="order_Total" value="${orderTotal}"></li>
+								<li class="list-group-item"># Item: <input name="item_Quantity" value="${itemCount}" ></li>
+								<li class="list-group-item">Total: $ <input name="order_Total" value="${orderTotal}" ></li>
 								<li class="list-group-item">
 									<button type="submit" class="btn btn-primary btn-block">Submit Order</button>
 								</li>
