@@ -19,14 +19,14 @@
     <servlet-name>MenuController</servlet-name>
     <url-pattern>/MenuController</url-pattern>
   </servlet-mapping>
-  <servlet>
+    <servlet>
     <description></description>
-    <display-name>SelectController</display-name>
-    <servlet-name>SelectController</servlet-name>
-    <servlet-class>in.order.controller.SelectController</servlet-class>
+    <display-name>OrderController</display-name>
+    <servlet-name>OrderController</servlet-name>
+    <servlet-class>in.order.controller.OrderController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SelectController</servlet-name>
-    <url-pattern>/SelectController</url-pattern>
+    <servlet-name>OrderController</servlet-name>
+    <url-pattern>/OrderController</url-pattern>
   </servlet-mapping>
 </web-app>

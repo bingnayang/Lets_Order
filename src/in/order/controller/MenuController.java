@@ -31,14 +31,13 @@ public class MenuController extends HttpServlet {
 	int itemCount = 0;
 	// Create a reference variable
 	MenuDAO menuDAO = null;
-	OrderViewDAO orderViewDAO = null;
 	
 	public MenuController() {
 		menuDAO = new MenuDAOImplement();
-		orderViewDAO = new OrderViewImpl();
 
 	} 
-
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if(action == null) {
@@ -58,30 +57,9 @@ public class MenuController extends HttpServlet {
 				break;
 			case "DELETE":
 				deleteAnItem(request,response);
-//				getItem(request,response);
 				getMenuItem(request,response);
 				break;
-			case "VIEW_ACTIVE":
-				getActiveOrderList(request,response);
-				break;
 		}
-	}
-
-	private void getActiveOrderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		List<OrderDetail> allActiveOrder = orderViewDAO.getActiveOrder();
-		
-		System.out.println("Active Order List:");
-		for(OrderDetail temp: allActiveOrder) {
-			System.out.println(temp);
-		}
-		request.setAttribute("allOrderList",allActiveOrder);
-		
-		
-		// Get the request dispatcher
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order-view.jsp");
-		// Forward the request and response objects
-		dispatcher.forward(request,response);
-		
 	}
 
 	private void deleteAnItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
