@@ -48,6 +48,7 @@ public class OrderController extends HttpServlet{
 		}
 	    System.out.println("=================================");
 
+	    boolean submitOrder = orderViewDAO.submitOrder(ticket,itemNameArray,itemPriceArray);
 		
 		response.sendRedirect("MenuController?action=DELETE_ALL");
 	}
