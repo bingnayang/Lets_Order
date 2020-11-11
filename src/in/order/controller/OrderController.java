@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import in.order.dao.OrderViewDAO;
 import in.order.dao.OrderViewImpl;
 import in.order.entity.MenuInfo;
-import in.order.entity.OrderDetail;
+import in.order.entity.OrderInfo;
+import in.order.entity.OrderItem;
+import in.order.entity.Ticket;
 
 public class OrderController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -27,24 +29,25 @@ public class OrderController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String itemCount = request.getParameter("item_Quantity");
-		String orderTotal = request.getParameter("order_Total");
+		String orderItemCountTemp = request.getParameter("item_Quantity");
+		String orderTotalTemp = request.getParameter("order_Total");
+		String[] itemNameArray = request.getParameterValues("item_Name");
+		String[] itemPriceArray = request.getParameterValues("item_Price");
+				
+		Ticket ticket = new Ticket();
+		ticket.setOrderQuantity(Integer.parseInt(orderItemCountTemp));
+		ticket.setOrderTotal(Double.parseDouble(orderTotalTemp));
 		
-		List<String> itemName = new ArrayList<String>();
-		
-		String[] value = request.getParameterValues("item_Name");
-        for(int i=0;i<value.length;i++) {
-        	itemName.add(request.getParameterValues("item_Name")[i]);
-        }
 
-		
-		System.out.println("Get: itemCount = "+itemCount);
-		System.out.println("Get: orderTotal = "+orderTotal);
-		System.out.println("Get: itemName = ");
-		for(String temp: itemName) {
-			System.out.println(temp);
+	    System.out.println("=================================");
+		System.out.println("Order Item Quantity: "+ticket.getOrderQuantity());
+		System.out.println("Order Total: $"+ticket.getOrderTotal());
+		System.out.println("Order Item:");
+		for(int i=0; i<itemNameArray.length; i++) {
+			System.out.println(itemNameArray[i]+" | "+itemPriceArray[i]);
 		}
-		
+	    System.out.println("=================================");
+
 		
 		response.sendRedirect("MenuController?action=DELETE_ALL");
 	}
@@ -61,10 +64,10 @@ public class OrderController extends HttpServlet{
 	
 	}
 	private void getActiveOrderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		List<OrderDetail> allActiveOrder = orderViewDAO.getActiveOrder();
+		List<OrderInfo> allActiveOrder = orderViewDAO.getActiveOrder();
 		
 		System.out.println("Active Order List:");
-		for(OrderDetail temp: allActiveOrder) {
+		for(OrderInfo temp: allActiveOrder) {
 			System.out.println(temp);
 			System.out.println(temp);
 		}

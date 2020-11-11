@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.order.entity.MenuInfo;
-import in.order.entity.OrderDetail;
+import in.order.entity.OrderInfo;
 import in.order.util.DBConnectionUtil;
 
 public class OrderViewImpl implements OrderViewDAO {
@@ -18,17 +18,15 @@ public class OrderViewImpl implements OrderViewDAO {
 	PreparedStatement preparedStatement = null;
 	
 	@Override
-	public List<OrderDetail> getActiveOrder() {
-//		SELECT *
-//		FROM orders INNER JOIN ticketOrder
-//		WHERE ticketOrder.order_Id = orders.order_Id
-		List<OrderDetail> orderList = null;
-		OrderDetail orderDetail = null;
-		String sql = "SELECT orders.order_Id,ticketOrder.ticket_Id,orders.itemName,orders.itemPrice, ticketOrder.orderTotal,ticketOrder.orderItemQuantity " + 
-				"FROM orders INNER JOIN ticketOrder " + 
-				"WHERE ticketOrder.order_Id = orders.order_Id";
+	public List<OrderInfo> getActiveOrder() {
+
+		List<OrderInfo> orderList = null;
+		OrderInfo orderDetail = null;
+		String sql = "SELECT orderItems.order_Id,orderTickets.ticket_Id,orderItems.itemName,orderItems.itemPrice, orderTickets.orderTotal,orderTickets.orderItemQuantity " + 
+				"FROM orderItems INNER JOIN orderTickets " + 
+				"WHERE orderTickets.order_Id = orderItems.order_Id";
 		try {
-			orderList = new ArrayList<OrderDetail>();
+			orderList = new ArrayList<OrderInfo>();
 			// Get the database connection
 			connection = DBConnectionUtil.openConnection();
 			// Create a statement
@@ -38,7 +36,7 @@ public class OrderViewImpl implements OrderViewDAO {
 			
 			// Process the resultSet
 			while(resultSet.next()) {
-				orderDetail = new OrderDetail();
+				orderDetail = new OrderInfo();
 				orderDetail.setTicket_Id(resultSet.getInt("ticket_Id"));
 				orderDetail.setOrder_Id(resultSet.getInt("order_Id"));
 				orderDetail.setItemName(resultSet.getString("itemName"));

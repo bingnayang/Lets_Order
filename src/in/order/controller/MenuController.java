@@ -18,14 +18,14 @@ import in.order.dao.MenuDAOImplement;
 import in.order.dao.OrderViewDAO;
 import in.order.dao.OrderViewImpl;
 import in.order.entity.MenuInfo;
-import in.order.entity.OrderDetail;
+import in.order.entity.OrderInfo;
 
 
 public class MenuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	List<MenuInfo> bucketList = new ArrayList<MenuInfo>();
-    NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+//    NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 	double total = 0.0;
 	int itemCount = 0;
@@ -106,13 +106,13 @@ public class MenuController extends HttpServlet {
 
 	public void getMenuItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MenuInfo> allMenuList = menuDAO.getMenu();		
-        String currencyTotal = format.format(total);
+//        String currencyTotal = format.format(total);
 
 		System.out.println("total: "+total);
 		System.out.println("Item Count: "+itemCount);
 		
 		request.setAttribute("itemCount",itemCount);
-		request.setAttribute("orderTotal",currencyTotal);
+		request.setAttribute("orderTotal",total);
 		request.setAttribute("allMenuList",allMenuList);
 		// Get the request dispatcher
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/order.jsp");

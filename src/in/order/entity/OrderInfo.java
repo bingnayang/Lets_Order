@@ -1,12 +1,13 @@
 package in.order.entity;
 
-public class OrderDetail {
+public class OrderInfo {
 	private int ticket_Id;
 	private int order_Id;
 	private String itemName;
 	private double itemPrice;
 	private int orderQuantity;
 	private double orderTotal;
+	
 	public int getTicket_Id() {
 		return ticket_Id;
 	}
@@ -43,11 +44,7 @@ public class OrderDetail {
 	public void setOrderTotal(double orderTotal) {
 		this.orderTotal = orderTotal;
 	}
-	@Override
-	public String toString() {
-		return "OrderDetail [ticket_Id=" + ticket_Id + ", order_Id=" + order_Id + ", itemName=" + itemName
-				+ ", itemPrice=" + itemPrice + ", orderQuantity=" + orderQuantity + ", orderTotal=" + orderTotal + "]";
-	}
+
 
 	
 }
