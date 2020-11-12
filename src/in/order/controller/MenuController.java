@@ -1,11 +1,9 @@
 package in.order.controller;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.order.dao.MenuDAO;
 import in.order.dao.MenuDAOImplement;
-import in.order.dao.OrderViewDAO;
-import in.order.dao.OrderViewImpl;
 import in.order.entity.MenuInfo;
-import in.order.entity.OrderInfo;
 
 
 public class MenuController extends HttpServlet {

@@ -1,7 +1,6 @@
 package in.order.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.order.dao.OrderViewDAO;
 import in.order.dao.OrderViewImpl;
-import in.order.entity.MenuInfo;
-import in.order.entity.OrderInfo;
 import in.order.entity.OrderItem;
 import in.order.entity.Ticket;
 
@@ -65,13 +62,10 @@ public class OrderController extends HttpServlet{
 	
 	}
 	private void getActiveOrderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		List<OrderInfo> allActiveOrder = orderViewDAO.getActiveOrder();
-		
-		System.out.println("Active Order List:");
-		for(OrderInfo temp: allActiveOrder) {
-			System.out.println(temp);
-			System.out.println(temp);
-		}
+		List<Ticket> allActiveOrder = orderViewDAO.getActiveOrder();
+		List<OrderItem> allOrderItem = orderViewDAO.getActiveOrderItem();
+
+		request.setAttribute("allOrderItemList",allOrderItem);
 		request.setAttribute("allOrderList",allActiveOrder);
 		
 		// Get the request dispatcher

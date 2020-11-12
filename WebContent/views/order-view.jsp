@@ -31,21 +31,31 @@
 				Order List</button>
 		</div>
 	</nav>
+	<div class="container-fluid">
+		<div class="d-flex flex-wrap">
+			<c:forEach items="${allOrderList}" var="order">
+				<div class="card p-2" style="width: 18rem;">
+					<div class="card-header">Order # ${order.ticket_Id}</div>
 
-	<div class="d-flex flex-row">
-		<c:forEach items="${allOrderList}" var="item">
-			<div class="p-2">
-				<div class="card" style="width: 18rem;">
-					<div class="card-header">Order # ${item.order_Id} | Quantity
-						# ${item.orderQuantity}</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">${item.itemName}</li>
-					</ul>
-					<div class="card-footer">Total $ ${item.orderTotal}</div>
+					<c:forEach items="${allOrderItemList}" var="item">
+						<c:if test="${order.ticket_Id == item.ticket_Id}">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">${item.name} | ${item.price}</li>
+							</ul>
+						</c:if>
+					</c:forEach>
+
+					<div class="card-footer">Quantity: ${order.orderQuantity}</div>
+					<div class="card-footer">Total: $ ${order.orderTotal}</div>
 				</div>
-			</div>
-		</c:forEach>
-
+			</c:forEach>
+		</div>
 	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

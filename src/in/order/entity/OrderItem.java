@@ -1,17 +1,17 @@
 package in.order.entity;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OrderItem {
-	private int order_Id;
+	private int ticket_Id;
 	private String[] itemName;
 	private String[] itemPrice;
-	public int getOrder_Id() {
-		return order_Id;
+	private String name;
+	private double price;
+
+	public int getTicket_Id() {
+		return ticket_Id;
 	}
-	public void setOrder_Id(int order_Id) {
-		this.order_Id = order_Id;
+	public void setTicket_Id(int ticket_Id) {
+		this.ticket_Id = ticket_Id;
 	}
 	public String[] getItemName() {
 		return itemName;
@@ -25,12 +25,17 @@ public class OrderItem {
 	public void setItemPrice(String[] itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-	@Override
-	public String toString() {
-		return "OrderItem [itemName=" + Arrays.toString(itemName) + ", itemPrice=" + Arrays.toString(itemPrice) + "]";
+	public String getName() {
+		return name;
 	}
-
-
- 
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 }

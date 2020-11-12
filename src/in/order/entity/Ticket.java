@@ -5,6 +5,7 @@ public class Ticket {
 	private int order_Id;
 	private double orderTotal;
 	private int orderQuantity;
+	
 	public int getTicket_Id() {
 		return ticket_Id;
 	}
