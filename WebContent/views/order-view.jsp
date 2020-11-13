@@ -34,7 +34,7 @@
 	<div class="container-fluid">
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${allOrderList}" var="order">
-				<div class="card p-2" style="width: 18rem;">
+				<div class="card" style="width: 18rem; margin-right: 15px; margin-bottom: 15px; border: none;">
 					<div class="card-header">Order # ${order.ticket_Id}</div>
 
 					<c:forEach items="${allOrderItemList}" var="item">

@@ -1,6 +1,7 @@
 package in.order.controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,10 +21,8 @@ public class MenuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	List<MenuInfo> bucketList = new ArrayList<MenuInfo>();
-//    NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-
-	double total = 0.0;
-	int itemCount = 0;
+	double total;
+	int itemCount;
 	// Create a reference variable
 	MenuDAO menuDAO = null;
 	
@@ -100,9 +99,8 @@ public class MenuController extends HttpServlet {
 	}
 
 	public void getMenuItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<MenuInfo> allMenuList = menuDAO.getMenu();		
-//        String currencyTotal = format.format(total);
-
+		List<MenuInfo> allMenuList = menuDAO.getMenu();	
+		
 		System.out.println("total: "+total);
 		System.out.println("Item Count: "+itemCount);
 		
