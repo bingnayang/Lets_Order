@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<form action="${pageContext.request.contextPath}/OrderController"
+				<form action="${pageContext.request.contextPath}/OrderController?action=SUBMIT"
 					method="POST">
 					<div class="card">
 						<div class="card-header">Order Bucket</div>

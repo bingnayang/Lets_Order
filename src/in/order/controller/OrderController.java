@@ -26,6 +26,16 @@ public class OrderController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		switch(action) {
+		case "SUBMIT":
+			submitOrder(request,response);
+			break;
+		}
+	}
+
+
+	private void submitOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String orderItemCountTemp = request.getParameter("item_Quantity");
 		String orderTotalTemp = request.getParameter("order_Total");
 		String[] itemNameArray = request.getParameterValues("item_Name");
@@ -48,6 +58,7 @@ public class OrderController extends HttpServlet{
 	    boolean submitOrder = orderViewDAO.submitOrder(ticket,itemNameArray,itemPriceArray);
 		
 		response.sendRedirect("MenuController?action=DELETE_ALL");
+		
 	}
 
 
@@ -58,9 +69,20 @@ public class OrderController extends HttpServlet{
 		case "VIEW_ACTIVE":
 			getActiveOrderList(request,response);
 			break;
+		case "DELETE":
+			deleteAnOrder(request,response);
+		
 		}
 	
 	}
+	private void deleteAnOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("Delete Order ID: "+id);
+		
+		response.sendRedirect("OrderController?action=VIEW_ACTIVE");
+	}
+
+
 	private void getActiveOrderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		List<Ticket> allActiveOrder = orderViewDAO.getActiveOrder();
 		List<OrderItem> allOrderItem = orderViewDAO.getActiveOrderItem();

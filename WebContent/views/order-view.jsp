@@ -31,16 +31,18 @@
 				Order List</button>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<div class="container-fluid bg-light">
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${allOrderList}" var="order">
-				<div class="card"
+				<div class="card bg-light"
 					style="width: 18rem; margin-right: 15px; margin-bottom: 15px; border: none;">
 					<div class="card-header bg-dark text-light">
 						<div class="row">
 							<div class="col-auto mr-auto">Order # ${order.ticket_Id}</div>
 							<div class="col-auto">
-								<button type="button" class="badge badge-danger badge-pill"
+								<button type="button" 
+									class="badge badge-danger badge-pill"
+									onclick="window.location.href='${pageContext.request.contextPath}/OrderController?action=DELETE&id=${order.ticket_Id}'"
 									style="border: none;">X</button>
 							</div>
 						</div>
