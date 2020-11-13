@@ -27,7 +27,7 @@
 				onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=LIST'">Order
 				Menu</button>
 			<button type="submit" class="btn btn-outline-primary"
-				onclick="window.location.href='${pageContext.request.contextPath}/views/order-view.jsp'">Active
+				onclick="window.location.href='${pageContext.request.contextPath}/OrderController?action=VIEW_ACTIVE'">Active
 				Order List</button>
 		</div>
 	</nav>
