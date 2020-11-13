@@ -34,19 +34,36 @@
 	<div class="container-fluid">
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${allOrderList}" var="order">
-				<div class="card" style="width: 18rem; margin-right: 15px; margin-bottom: 15px; border: none;">
-					<div class="card-header">Order # ${order.ticket_Id}</div>
-
+				<div class="card"
+					style="width: 18rem; margin-right: 15px; margin-bottom: 15px; border: none;">
+					<div class="card-header bg-dark text-light">
+						<div class="row">
+							<div class="col-auto mr-auto">Order # ${order.ticket_Id}</div>
+							<div class="col-auto">
+								<button type="button" class="badge badge-danger badge-pill"
+									style="border: none;">X</button>
+							</div>
+						</div>
+					</div>
 					<c:forEach items="${allOrderItemList}" var="item">
 						<c:if test="${order.ticket_Id == item.ticket_Id}">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">${item.name} | ${item.price}</li>
+							<ul class="list-group list-group-flush"
+								style="border-style: solid;">
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-auto mr-auto">- ${item.name}</div>
+										<div class="col-auto">$${item.price}</div>
+									</div>
+								</li>
+
 							</ul>
 						</c:if>
 					</c:forEach>
 
-					<div class="card-footer">Quantity: ${order.orderQuantity}</div>
-					<div class="card-footer">Total: $ ${order.orderTotal}</div>
+					<div class="card-footer bg-dark text-light">Quantity:
+						${order.orderQuantity}</div>
+					<div class="card-footer bg-dark text-light">Total: $
+						${order.orderTotal}</div>
 				</div>
 			</c:forEach>
 		</div>
