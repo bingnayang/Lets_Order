@@ -16,7 +16,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Active Order List</title>
 </head>
-<body>
+<body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="#"> Let's Order </a>
 	</nav>
@@ -31,7 +31,7 @@
 				Order List</button>
 		</div>
 	</nav>
-	<div class="container-fluid bg-light">
+	<div class="container-fluid">
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${allOrderList}" var="order">
 				<div class="card bg-light"

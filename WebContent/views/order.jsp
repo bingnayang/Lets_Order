@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +49,7 @@
 							<c:forEach items="${allMenuList}" var="item">
 								<tr>
 									<td>${item.itemName}</td>
-									<td>$ ${item.itemPrice}</td>
+									<td>$<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.itemPrice}"/></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=SELECT&id=${item.item_Id}'">+</button></td>
 								</tr>
@@ -73,7 +75,10 @@
 								<c:forEach items="${bucketList}" var="item">
 									<tr>
 										<td><div class="form-group"><input class="form-control" name="item_Name" value="${item.itemName}" readonly></div></td>
-										<td><input class="form-control" name="item_Price" value="${item.itemPrice}" readonly></td>
+										<td>
+											<input class="form-control" name="item_Price" value="${item.itemPrice}" hidden="">
+											$<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.itemPrice}"/>
+										</td>
 										<td><button type="button" class="btn btn-danger btn-sm"
 												onclick="window.location.href='${pageContext.request.contextPath}/MenuController?action=DELETE&id=${item.item_Id}'">X</button></td>
 									</tr>
@@ -83,7 +88,10 @@
 						<div class="card-footer text-muted">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"># Item: <input name="item_Quantity" value="${itemCount}" readonly></li>
-								<li class="list-group-item">Total: $<input name="order_Total" value="${orderTotal}" readonly></li>
+								<li class="list-group-item">
+									<input name="order_Total" value="${orderTotal}" hidden="">
+									Total: $<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${orderTotal}"/>
+									</li>
 								<li class="list-group-item">
 									<button type="submit" class="btn btn-primary btn-block">Submit Order</button>
 								</li>
