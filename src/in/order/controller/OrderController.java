@@ -79,6 +79,8 @@ public class OrderController extends HttpServlet{
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println("Delete Order ID: "+id);
 		
+		boolean deleteOrder = orderViewDAO.deleteAnOrder(id);
+		
 		response.sendRedirect("OrderController?action=VIEW_ACTIVE");
 	}
 

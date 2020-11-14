@@ -122,4 +122,28 @@ public class OrderViewImpl implements OrderViewDAO {
 		return orderItemList;
 	}
 
+	@Override
+	public boolean deleteAnOrder(int id) {
+		boolean flag = false;
+		String ticketTable = "DELETE FROM orderTickets WHERE ticket_Id ="+id;
+		String orderItemTable = "DELETE FROM orderItems WHERE ticket_Id ="+id;
+		
+		try {
+			connection = DBConnectionUtil.openConnection();
+			preparedStatement = connection.prepareStatement(ticketTable);
+			preparedStatement.executeUpdate();
+			
+			connection = DBConnectionUtil.openConnection();
+			preparedStatement = connection.prepareStatement(orderItemTable);
+			preparedStatement.executeUpdate();
+			
+			flag = true;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+
 }

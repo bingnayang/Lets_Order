@@ -13,4 +13,6 @@ public interface OrderViewDAO {
 
 	List<OrderItem> getActiveOrderItem();
 
+	boolean deleteAnOrder(int id);
+
 }
