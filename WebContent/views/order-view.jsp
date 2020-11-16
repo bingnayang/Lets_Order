@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +54,7 @@
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-auto mr-auto">- ${item.name}</div>
-										<div class="col-auto">$${item.price}</div>
+										<div class="col-auto">$<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.price}"/></div>
 									</div>
 								</li>
 
@@ -65,7 +65,7 @@
 					<div class="card-footer bg-dark text-light">Quantity:
 						${order.orderQuantity}</div>
 					<div class="card-footer bg-dark text-light">Total: $
-						${order.orderTotal}</div>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.orderTotal}"/></div>
 				</div>
 			</c:forEach>
 		</div>
