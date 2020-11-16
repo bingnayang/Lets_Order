@@ -36,35 +36,34 @@
 			<c:forEach items="${allOrderList}" var="order">
 				<div class="card bg-light"
 					style="width: 18rem; margin-right: 15px; margin-bottom: 15px; border: none;">
-					<div class="card-header bg-dark text-light">
+					<div class="card-header bg-secondary text-light">
 						<div class="row">
 							<div class="col-auto mr-auto">Order # ${order.ticket_Id}</div>
 							<div class="col-auto">
 								<button type="button" 
-									class="badge badge-danger badge-pill"
+									class=""
 									onclick="window.location.href='${pageContext.request.contextPath}/OrderController?action=DELETE&id=${order.ticket_Id}'"
-									style="border: none;">X</button>
+									style="border: none; background-color: #6c757d; color:white;"><i class='far fa-trash-alt'></i></button>
 							</div>
 						</div>
 					</div>
 					<c:forEach items="${allOrderItemList}" var="item">
 						<c:if test="${order.ticket_Id == item.ticket_Id}">
 							<ul class="list-group list-group-flush"
-								style="border-style: solid;">
+								style="border-style: solid;border-color: #6c757d;">
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-auto mr-auto">- ${item.name}</div>
 										<div class="col-auto">$<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.price}"/></div>
 									</div>
 								</li>
-
 							</ul>
 						</c:if>
 					</c:forEach>
 
-					<div class="card-footer bg-dark text-light">Quantity:
+					<div class="card-footer bg-secondary text-light">Quantity:
 						${order.orderQuantity}</div>
-					<div class="card-footer bg-dark text-light">Total: $
+					<div class="card-footer bg-secondary text-light">Total: $
 						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.orderTotal}"/></div>
 				</div>
 			</c:forEach>
@@ -76,5 +75,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+		
 </body>
 </html>
